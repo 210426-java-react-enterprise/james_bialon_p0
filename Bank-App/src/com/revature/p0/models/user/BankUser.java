@@ -1,4 +1,4 @@
-package com.revature.p0.models;
+package com.revature.p0.models.user;
 
 /**
  * Created by IntelliJ IDEA.

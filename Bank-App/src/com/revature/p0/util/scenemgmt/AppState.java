@@ -1,4 +1,4 @@
-package com.revature.p0.util;
+package com.revature.p0.util.scenemgmt;
 
 /**
  * Created by IntelliJ IDEA.
@@ -7,5 +7,5 @@ package com.revature.p0.util;
  * Time: 11:21 AM
  * Description: {Insert Description}
  */
-public class LinkedList {
+public class AppState{
 }
