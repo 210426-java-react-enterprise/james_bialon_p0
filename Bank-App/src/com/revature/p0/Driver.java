@@ -7,5 +7,5 @@ package com.revature.p0;
  * Time: 9:06 AM
  * Description: {Insert Description}
  */
-public class SceneManager {
+public class Driver {
 }
