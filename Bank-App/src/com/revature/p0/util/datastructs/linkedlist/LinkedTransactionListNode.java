@@ -14,12 +14,15 @@ public class LinkedTransactionListNode<T> implements DoubleIterator<LinkedTransa
     private AccountTransaction data;
     private LinkedTransactionListNode<T> nextNode;
     private LinkedTransactionListNode<T> prevNode;
+    private int index;
 
-    public LinkedTransactionListNode(AccountTransaction data) {
+    public LinkedTransactionListNode(int index, AccountTransaction data) {
+        this.index = index;
         this.data = data;
     }
 
-    public LinkedTransactionListNode(AccountTransaction data, LinkedTransactionListNode<T> nextNode, LinkedTransactionListNode<T> prevNode) {
+    public LinkedTransactionListNode(int index, AccountTransaction data, LinkedTransactionListNode<T> nextNode, LinkedTransactionListNode<T> prevNode) {
+        this.index = index;
         this.data = data;
         this.nextNode = nextNode;
         this.prevNode = prevNode;

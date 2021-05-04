@@ -20,7 +20,7 @@ public class LinkedTransactionList<T> implements TransactionList {
             throw new IllegalArgumentException("This linked list does not accept null values");
         }
 
-        LinkedTransactionListNode<T> newNode = new LinkedTransactionListNode<T>(data);
+        LinkedTransactionListNode<T> newNode = new LinkedTransactionListNode<T>(size, data);
         if (head == null) {
             tail = head = newNode; // sets both head and tail as the same new node
         } else {

@@ -9,7 +9,7 @@ import com.revature.p0.models.account.AccountTransaction;
  * Time: 4:05 PM
  * Description: {Insert Description}
  */
-public interface TransactionList<T> {
+public interface TransactionList<TransactionList> {
 
     void traverse();
     void reverseTraverse();

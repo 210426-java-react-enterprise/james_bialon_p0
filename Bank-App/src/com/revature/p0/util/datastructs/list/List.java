@@ -1,19 +1,23 @@
-package com.revature.p0.util.datastructs.list;
+package com.revature.quizzard.util;
 
-import com.revature.p0.models.account.AccountTransaction;
+public interface List<T> extends Collection<T> {
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jbialon
- * Date: 5/4/2021
- * Time: 9:35 AM
- * Description: {Insert Description}
- */
-public interface List<T> {
+    T get(int index);
 
-    void add(T data);
-    boolean contains(T data);
-    AccountTransaction pop();
-    int size();
+    /*
+        Interfaces
+            - act as a contract for implementing classes (all concrete implementations must
+              implement all abstract methods!)
+
+            - do no have constructors
+
+            - all fields declared within are implicitly public, static, and final
+
+            - all method stubs declared within are implicitly public and abstract
+
+            - methods with implementations are permitted in two ways: static and default methods
+                + static methods cannot be overridden by implementing classes (but can be redeclared/shadowed)
+                + default methods can be overridden by implementing classes (introduced in Java 8)
+     */
 
 }
