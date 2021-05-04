@@ -1,5 +1,6 @@
 package com.revature.p0.util.datastructs.linkedlist;
 
+import com.revature.p0.models.account.AccountTransaction;
 import com.revature.p0.util.iterator.DoubleIterator;
 
 /**
@@ -9,34 +10,34 @@ import com.revature.p0.util.iterator.DoubleIterator;
  * Time: 2:02 PM
  * Description: {Insert Description}
  */
-public class LinkedListNode<T> implements DoubleIterator<LinkedListNode<T>> {
-    private T data;
-    private LinkedListNode<T> nextNode;
-    private LinkedListNode<T> prevNode;
+public class LinkedTransactionListNode<T> implements DoubleIterator<LinkedTransactionListNode<T>> {
+    private AccountTransaction data;
+    private LinkedTransactionListNode<T> nextNode;
+    private LinkedTransactionListNode<T> prevNode;
 
-    public LinkedListNode(T data) {
+    public LinkedTransactionListNode(AccountTransaction data) {
         this.data = data;
     }
 
-    public LinkedListNode(T data, LinkedListNode<T> nextNode, LinkedListNode<T> prevNode) {
+    public LinkedTransactionListNode(AccountTransaction data, LinkedTransactionListNode<T> nextNode, LinkedTransactionListNode<T> prevNode) {
         this.data = data;
         this.nextNode = nextNode;
         this.prevNode = prevNode;
     }
 
-    public T getData() {
+    public AccountTransaction getData() {
         return data;
     }
 
-    public void setData(T data) {
+    public void setData(AccountTransaction data) {
         this.data = data;
     }
 
-    public void setNextNode(LinkedListNode<T> nextNode) {
+    public void setNextNode(LinkedTransactionListNode<T> nextNode) {
         this.nextNode = nextNode;
     }
 
-    public void setPrevNode(LinkedListNode<T> prevNode) {
+    public void setPrevNode(LinkedTransactionListNode<T> prevNode) {
         this.prevNode = prevNode;
     }
 
@@ -52,7 +53,7 @@ public class LinkedListNode<T> implements DoubleIterator<LinkedListNode<T>> {
     }
 
     @Override
-    public LinkedListNode<T> next() {
+    public LinkedTransactionListNode<T> next() {
         return this.nextNode;
     }
 
@@ -68,7 +69,7 @@ public class LinkedListNode<T> implements DoubleIterator<LinkedListNode<T>> {
     }
 
     @Override
-    public LinkedListNode<T> prev() {
+    public LinkedTransactionListNode<T> prev() {
         return prevNode;
     }
 }

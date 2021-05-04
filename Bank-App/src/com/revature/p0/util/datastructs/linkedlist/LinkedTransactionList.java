@@ -1,26 +1,26 @@
 package com.revature.p0.util.datastructs.linkedlist;
 
-import com.revature.p0.util.datastructs.list.List;
+import com.revature.p0.models.account.AccountTransaction;
+import com.revature.p0.util.datastructs.list.TransactionList;
 
 /**
  * Simple implementaion of a doubly linked list that will not take null data.
  *
  * @param <T>
  */
-public class LinkedList<T> implements List<T> {
-
+public class LinkedTransactionList<T> implements TransactionList {
     private int size;
-    private LinkedListNode<T> head;
-    private LinkedListNode<T> tail;
+    private LinkedTransactionListNode<T> head;
+    private LinkedTransactionListNode<T> tail;
 
     @Override
-    public void add(T data) throws IllegalArgumentException {
+    public void add(AccountTransaction data) throws IllegalArgumentException {
 
         if (data == null) {
             throw new IllegalArgumentException("This linked list does not accept null values");
         }
 
-        LinkedListNode<T> newNode = new LinkedListNode<T>(data);
+        LinkedTransactionListNode<T> newNode = new LinkedTransactionListNode<T>(data);
         if (head == null) {
             tail = head = newNode; // sets both head and tail as the same new node
         } else {
@@ -34,13 +34,13 @@ public class LinkedList<T> implements List<T> {
     }
 
     @Override
-    public T pop() {
+    public AccountTransaction pop() {
 
         if(head == null) {
             return null;
         }
 
-        T soughtData = head.getData();
+        AccountTransaction soughtData = head.getData();
         head = head.next();
 
         if (head != null) {
@@ -55,31 +55,13 @@ public class LinkedList<T> implements List<T> {
     }
 
     @Override
-    public boolean contains(T data) {
-        LinkedListNode currNode = head;
-
-        while (currNode.hasNext()) {
-            if (currNode.getData().equals(data)) {
-                return true;
-            }
-
-            currNode = currNode.next();
-        }
-
-        if (currNode.getData().equals(data)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
     public int size() {
         return size;
     }
 
+    @Override
     public void traverse() {
-        LinkedListNode currNode = this.head;
+        LinkedTransactionListNode<T> currNode = this.head;
 
         if (currNode != null) {
             while (currNode.hasNext()) {
@@ -93,8 +75,9 @@ public class LinkedList<T> implements List<T> {
         }
     }
 
+    @Override
     public void reverseTraverse() {
-        LinkedListNode currNode = this.tail;
+        LinkedTransactionListNode<T> currNode = this.tail;
 
         if (currNode != null) {
             while (currNode.hasPrev()) {
@@ -107,4 +90,26 @@ public class LinkedList<T> implements List<T> {
             System.out.println("This list is empty.");
         }
     }
+
+    @Override
+    public AccountTransaction getByAmount(double amt) {
+        LinkedTransactionListNode currNode = head;
+
+        if (currNode != null) {
+            while (currNode.hasNext()) {
+                if (Double.compare(currNode.getData().getTransactionAmt(), amt) == 0) {
+                    return currNode.getData();
+                }
+
+                currNode = currNode.next();
+            }
+
+            if (Double.compare(currNode.getData().getTransactionAmt(), amt) == 0) {
+                return currNode.getData();
+            }
+        }
+
+        return null;
+    }
+
 }

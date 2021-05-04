@@ -5,15 +5,17 @@ import com.revature.p0.models.account.AccountTransaction;
 /**
  * Created by IntelliJ IDEA.
  * User: Jbialon
- * Date: 5/4/2021
- * Time: 9:35 AM
+ * Date: 4/30/2021
+ * Time: 4:05 PM
  * Description: {Insert Description}
  */
-public interface List<T> {
+public interface TransactionList<T> {
 
-    void add(T data);
-    boolean contains(T data);
+    void traverse();
+    void reverseTraverse();
+    void add(AccountTransaction data);
     AccountTransaction pop();
+    AccountTransaction getByAmount(double amt);
     int size();
 
 }

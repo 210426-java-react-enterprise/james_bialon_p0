@@ -1,5 +1,8 @@
 package com.revature.p0.util.datastructs.linkedlist;
 
+import com.revature.p0.models.account.AccountTransaction;
+
+
 /**
  * Created by IntelliJ IDEA.
  * User: Jbialon
@@ -9,47 +12,10 @@ package com.revature.p0.util.datastructs.linkedlist;
  */
 public class Test {
     public static void main(String[] args) {
-        LinkedList tester = new LinkedList();
+        LinkedTransactionList xActionList = new LinkedTransactionList();
 
-        System.out.println("LinkedList created...");
+        xActionList.add(new AccountTransaction(0, 1, 1000.25));
 
-        tester.add("Node1");
-        tester.add("Node2");
-        tester.add("Node3");
-        tester.add("Node4");
-        tester.add("Node5");
-
-        System.out.println("Nodes added successfully...");
-        System.out.println();
-
-        System.out.println("Traversal Tests");
-        System.out.println("-=============-");
-        System.out.println();
-
-        System.out.println("-Forwards-");
-        System.out.println();
-        tester.traverse();
-        System.out.println();
-
-        System.out.println("-Backwords-");
-        System.out.println();
-        tester.reverseTraverse();
-
-        System.out.println();
-        System.out.println("Traversal: PASS");
-        System.out.println();
-
-        System.out.println("Pop Contain Tests");
-        System.out.println("-===============-");
-        System.out.println();
-
-        System.out.println(tester.size());
-        System.out.println(tester.contains("Node1"));
-        System.out.println(tester.pop());
-        System.out.println(tester.contains("Node1"));
-        System.out.println(tester.size());
-
-        System.out.println();
-        System.out.println("Pop Contain: PASS");
+        System.out.println(xActionList.pop().getTransactionAmt());
     }
 }
