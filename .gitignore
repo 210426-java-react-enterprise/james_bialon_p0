@@ -25,6 +25,8 @@ hs_err_pid*
 # Build folders
 target/
 
+# Properties files
+*.properties
 
 # IDE
 .idea/

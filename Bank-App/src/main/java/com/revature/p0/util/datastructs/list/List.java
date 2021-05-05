@@ -1,4 +1,6 @@
-package com.revature.quizzard.util;
+package com.revature.p0.util.datastructs.list;
+
+import com.revature.p0.util.collection.Collection;
 
 public interface List<T> extends Collection<T> {
 
