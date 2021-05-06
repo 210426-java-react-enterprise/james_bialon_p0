@@ -1,4 +1,4 @@
-package main.java.com.revature.p0.util.scenemgmt;
+package com.revature.p0.util.scenemgmt;
 
 /**
  * Created by IntelliJ IDEA.

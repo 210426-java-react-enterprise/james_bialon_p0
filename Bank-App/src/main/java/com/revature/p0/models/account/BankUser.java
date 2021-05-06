@@ -11,20 +11,23 @@ public class BankUser {
     private int uID;
     private String fName;
     private String lName;
+    private String uName;
     private String email;
     private String password;
 
-    public BankUser(String fName, String lName, String email, String password) {
+    public BankUser(String fName, String lName, String uName, String email, String password) {
         this.fName = fName;
         this.lName = lName;
+        this.uName = uName;
         this.email = email;
         this.password = password;
     }
 
-    public BankUser(int uID, String fName, String lName, String email, String password) {
+    public BankUser(int uID, String fName, String lName, String uName, String email, String password) {
         this.uID = uID;
         this.fName = fName;
         this.lName = lName;
+        this.uName = uName;
         this.email = email;
         this.password = password;
     }
@@ -51,6 +54,14 @@ public class BankUser {
 
     public void setlName(String lName) {
         this.lName = lName;
+    }
+
+    public String getuName() {
+        return uName;
+    }
+
+    public void setuName(String uName) {
+        this.uName = uName;
     }
 
     public String getEmail() {

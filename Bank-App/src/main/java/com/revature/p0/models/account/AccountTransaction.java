@@ -8,18 +8,15 @@ package com.revature.p0.models.account;
  * Description: {Insert Description}
  */
 public class AccountTransaction {
-    private int transactionID;
     private int acctID;
+    private int transactionID;
+    private String description;
     private double transactionAmt;
 
-    public AccountTransaction(int transactionID, int acctID, double transactionAmt) {
+    public AccountTransaction(int acctID, int transactionID, String description, double transactionAmt) {
+        this.acctID = acctID;
         this.transactionID = transactionID;
-        this.acctID = acctID;
-        this.transactionAmt = transactionAmt;
-    }
-
-    public AccountTransaction(int acctID, double transactionAmt) {
-        this.acctID = acctID;
+        this.description = description;
         this.transactionAmt = transactionAmt;
     }
 

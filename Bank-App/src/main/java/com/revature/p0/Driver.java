@@ -12,12 +12,11 @@ import com.revature.p0.util.datastructs.linkedlist.LinkedList;
  */
 public class Driver {
     public static void main(String[] args) {
+
         LinkedList<AccountTransaction> test = new LinkedList();
 
-        test.add(new AccountTransaction(1,1,1000.25));
+        test.add(new AccountTransaction(1,1, "TEST", 1000.25));
 
         System.out.println(test.get(0).getTransactionAmt());
-
-
     }
 }

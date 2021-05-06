@@ -2,10 +2,14 @@ create table User_Table (
 	Id serial primary key,
 	First_Name varchar ( 50 ) not null,
 	Last_Name varchar ( 50 ) not null,
-	Username varchar ( 15 ) unique not null,
 	Email varchar ( 50 ) unique not null,
-	Password varchar ( 72 ) not null
 );
+
+create table User_Login (
+	User_Id int primary key references User_Table(Id),
+	Username varchar ( 15 ) unique not null,
+	Password varchar ( 72 ) not null	
+)
 
 create table Account_Type (
 	Id serial primary key,
@@ -28,7 +32,7 @@ create table Account (
 );
 
 create table Account_Balance (
-	Account_Id serial primary key references Account (Id),
+	Account_Id int primary key references Account (Id),
 	Balance float not null
 );
 
