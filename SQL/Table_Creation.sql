@@ -33,7 +33,7 @@ create table Account (
 
 create table Account_Balance (
 	Account_Id int primary key references Account (Id),
-	Balance float not null check (Balance > -1)
+	Balance float not null check (Balance >= 0)
 );
 
 create table Account_Transaction (
