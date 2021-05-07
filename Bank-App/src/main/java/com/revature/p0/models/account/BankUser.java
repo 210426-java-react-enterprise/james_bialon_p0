@@ -15,6 +15,10 @@ public class BankUser {
     private String email;
     private String password;
 
+    public BankUser(){
+        super();
+    }
+
     public BankUser(String fName, String lName, String uName, String email, String password) {
         this.fName = fName;
         this.lName = lName;
