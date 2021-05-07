@@ -13,6 +13,8 @@ public class AccountType {
     private double interest;
     private String type;
 
+    public AccountType(){};
+
     public AccountType(int id, String type, double monthlyFees, double interest) {
         this.id = id;
         this.type = type;

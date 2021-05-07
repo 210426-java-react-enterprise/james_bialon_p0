@@ -22,7 +22,7 @@ public class UserDAO {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sqlInsertUser = "insert into bank_app.user_table" +
+            String sqlInsertUser = "insert into user_table" +
                                     "(email , first_name , last_name) values (?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sqlInsertUser, new String[] { "user_id" });
 
@@ -38,7 +38,7 @@ public class UserDAO {
                 }
             }
 
-            String sqlInsertLogin = "insert into bank_app.user_table" +
+            String sqlInsertLogin = "insert into user_table" +
                     "(user_id , username , password) values (?,?,crypt(?, gen_salt('bf'))";
             pstmt = conn.prepareStatement(sqlInsertLogin);
 
@@ -54,7 +54,7 @@ public class UserDAO {
     public boolean isUsernameAvailable(String username) {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "select * from bank_app.user_login where username = ?";
+            String sql = "select * from user_login where username = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
 
@@ -74,7 +74,7 @@ public class UserDAO {
     public boolean isEmailAvailable(String email) {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "select * from bank_app.user_table where email = ?";
+            String sql = "select * from user_table where email = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, email);
 
@@ -96,7 +96,7 @@ public class UserDAO {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "select * from bank_app.user_login where" +
+            String sql = "select * from user_login where" +
                     "username = ? and password = crypt(?, password)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
@@ -110,7 +110,7 @@ public class UserDAO {
                 user.setPassword(rs.getString("password"));
             }
 
-            sql = "select * from bank_app.user_table where id = ?";
+            sql = "select * from user_table where id = ?";
             pstmt.setInt(1, user.getuID());
 
             rs = pstmt.executeQuery();

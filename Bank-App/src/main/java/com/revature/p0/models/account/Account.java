@@ -9,21 +9,28 @@ package com.revature.p0.models.account;
  */
 public class Account {
     private int aID;
-    private String uID;
-    private String jUID;
+    private int uID;
+    private int jUID;
+    private int tID;
 
-    public Account(int aID, String uID, String jUID) {
+    public Account() {
+        super();
+    }
+
+    public Account(int aID, int uID, int jUID, int tID) {
         this.aID = aID;
         this.uID = uID;
         this.jUID = jUID;
+        this.tID = tID;
     }
 
-    public Account(String uID, String jUID) {
+    public Account(int uID, int jUID, int tID) {
         this.uID = uID;
         this.jUID = jUID;
+        this.tID = tID;
     }
 
-    public Account(String uID) {
+    public Account(int uID) {
         this.uID = uID;
     }
 
@@ -35,19 +42,27 @@ public class Account {
         this.aID = aID;
     }
 
-    public String getuID() {
+    public int getuID() {
         return uID;
     }
 
-    public void setuID(String uID) {
+    public void setuID(int uID) {
         this.uID = uID;
     }
 
-    public String getjUID() {
+    public int getjUID() {
         return jUID;
     }
 
-    public void setjUID(String jUID) {
+    public void setjUID(int jUID) {
         this.jUID = jUID;
+    }
+
+    public int gettID() {
+        return tID;
+    }
+
+    public void settID(int tID) {
+        this.tID = tID;
     }
 }
