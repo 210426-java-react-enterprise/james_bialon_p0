@@ -21,7 +21,7 @@ public class AccountBalanceDAO {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sqlInsertAcctBal = "insert into account_balance" +
+            String sqlInsertAcctBal = "insert into bank_app.account_balance" +
                     "(account_id , balance) values (?,0)";
             PreparedStatement pstmt = conn.prepareStatement(sqlInsertAcctBal);
 
@@ -38,12 +38,12 @@ public class AccountBalanceDAO {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sqlInsertAcctBal = "insert into account_balance" +
+            String sqlInsertAcctBal = "insert into bank_app.account_balance" +
                     "(account_id , balance) values (?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sqlInsertAcctBal);
 
             pstmt.setInt(1, acct.getaID());
-            pstmt.setFloat(2, currBalance);
+            pstmt.setDouble(2, currBalance);
             pstmt.executeUpdate();
 
 
@@ -52,21 +52,21 @@ public class AccountBalanceDAO {
         }
     }
 
-    public float getBalance(Account acct) {
+    public double getBalance(Account acct) {
 
-        float balance = 0;
+        double balance = 0;
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
             String sqlInsertAcctBal = "select balance" +
-                    "from account_balance where account_id = ?";
+                    "from bank_app.account_balance where account_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sqlInsertAcctBal);
 
             pstmt.setInt(1, acct.getaID());
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                balance = rs.getFloat("balance");
+                balance = rs.getDouble("balance");
             }
 
 

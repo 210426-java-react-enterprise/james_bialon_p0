@@ -21,7 +21,7 @@ public class AccountDAO {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sqlInsertAcct = "insert into account" +
+            String sqlInsertAcct = "insert into bank_app.account" +
                     "(user_id , join_user_id, type_id) values (?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sqlInsertAcct);
 
@@ -43,7 +43,7 @@ public class AccountDAO {
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
             String sqlGetAcct = "select *" +
-                    "from account where user_id = ?";
+                    "from bank_app.account where user_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sqlGetAcct);
 
             pstmt.setInt(1,bankUser.getuID());

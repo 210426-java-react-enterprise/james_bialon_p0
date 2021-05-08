@@ -96,7 +96,7 @@ public class UserDAO {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "select * from user_login where" +
+            String sql = "select * from bank_app.user_login where" +
                     "username = ? and password = crypt(?, password)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
@@ -110,7 +110,7 @@ public class UserDAO {
                 user.setPassword(rs.getString("password"));
             }
 
-            sql = "select * from user_table where id = ?";
+            sql = "select * from bank_app.user_table where id = ?";
             pstmt.setInt(1, user.getuID());
 
             rs = pstmt.executeQuery();

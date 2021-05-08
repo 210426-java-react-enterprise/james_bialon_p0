@@ -13,6 +13,9 @@ public class AccountTransaction {
     private String description;
     private double transactionAmt;
 
+    public AccountTransaction() {
+    }
+
     public AccountTransaction(int acctID, int transactionID, String description, double transactionAmt) {
         this.acctID = acctID;
         this.transactionID = transactionID;
@@ -40,7 +43,15 @@ public class AccountTransaction {
         return transactionAmt;
     }
 
-    public void setTransactionAmt(int transactionAmt) {
+    public void setTransactionAmt(double transactionAmt) {
         this.transactionAmt = transactionAmt;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
