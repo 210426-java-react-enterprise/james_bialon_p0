@@ -2,6 +2,7 @@ package com.revature.p0;
 
 import com.revature.p0.models.account.AccountTransaction;
 import com.revature.p0.util.datastructs.linkedlist.LinkedList;
+import com.revature.p0.util.scenemgmt.AppState;
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,12 +12,15 @@ import com.revature.p0.util.datastructs.linkedlist.LinkedList;
  * Description: {Insert Description}
  */
 public class Driver {
+    private static AppState app = new AppState();
+
     public static void main(String[] args) {
+        while (app.isAppRunning()) {
+            app.getRouter().navigate("/welcome");
+        }
+    }
 
-        LinkedList<AccountTransaction> test = new LinkedList();
-
-        test.add(new AccountTransaction(1,1, "TEST", 1000.25));
-
-        System.out.println(test.get(0).getTransactionAmt());
+    public static AppState app() {
+        return app;
     }
 }
