@@ -48,6 +48,7 @@ public class AccountDAO {
             String sqlGetNumOfAccts = "select count(*)" +
                     "from bank_app.account where user_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sqlGetNumOfAccts);
+            pstmt.setInt(1,bankUser.getuID());
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {

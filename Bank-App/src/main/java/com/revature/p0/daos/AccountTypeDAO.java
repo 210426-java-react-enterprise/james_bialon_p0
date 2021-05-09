@@ -64,11 +64,4 @@ public class AccountTypeDAO {
         return acctTypes;
     }
 
-    public static void main(String[] args) {
-
-        AccountTypeDAO dao = new AccountTypeDAO();
-
-        System.out.println(dao.getAllAcctTypes()[0].getInterest());
-    }
-
 }

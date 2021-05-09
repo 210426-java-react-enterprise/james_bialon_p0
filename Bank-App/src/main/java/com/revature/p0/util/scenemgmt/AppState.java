@@ -5,6 +5,7 @@ import com.revature.p0.screens.AccountScreen;
 import com.revature.p0.screens.LoginScreen;
 import com.revature.p0.screens.RegisterScreen;
 import com.revature.p0.screens.WelcomeScreen;
+import com.revature.p0.services.BankUserService;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -28,12 +29,12 @@ public class AppState{
         consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
         final UserDAO userDao = new UserDAO();
-        //final UserService userService = new UserService(userDao);
+        final BankUserService userService = new BankUserService(userDao);
 
         router = new ScreenRouter();
         router.addScreen(new WelcomeScreen(consoleReader, router))
                 .addScreen(new LoginScreen(consoleReader, router))
-                .addScreen(new RegisterScreen(consoleReader/*, userService*/))
+                .addScreen(new RegisterScreen(consoleReader, userService))
                 .addScreen(new AccountScreen(consoleReader, router));
 
         System.out.println("Application initialized!");

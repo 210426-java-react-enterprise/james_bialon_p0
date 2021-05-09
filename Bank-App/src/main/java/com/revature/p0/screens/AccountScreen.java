@@ -6,8 +6,11 @@ import com.revature.p0.daos.UserDAO;
 import com.revature.p0.models.account.Account;
 import com.revature.p0.models.account.BankUser;
 import com.revature.p0.util.scenemgmt.ScreenRouter;
+import com.revature.p0.util.singleton.LoggedInUser;
 
 import java.io.BufferedReader;
+
+import static com.revature.p0.Driver.app;
 
 /**
  * Created by IntelliJ IDEA.
@@ -32,6 +35,7 @@ public class AccountScreen extends Screen {
     @Override
     public void render() {
 
+        user = LoggedInUser.getInstance().getLoggedInUser();
         Account[] userAccounts;
         int counter = 1;
 
@@ -78,7 +82,9 @@ public class AccountScreen extends Screen {
 
                 switch (userSelection) {
                     case "0":
-                        //TODO exit
+                        System.out.println("Have a beautiful time!");
+                        Thread.sleep(1000);
+                        app().setAppRunning(false);
 
                     case "1":
                         //TODO deposit screen

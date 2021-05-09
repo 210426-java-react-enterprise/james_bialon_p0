@@ -1,6 +1,7 @@
 package com.revature.p0.screens;
 
 import com.revature.p0.models.account.BankUser;
+import com.revature.p0.services.BankUserService;
 
 import java.io.BufferedReader;
 
@@ -15,11 +16,12 @@ public class RegisterScreen extends Screen {
 
     //private UserService userService;
     private BufferedReader consoleReader;
+    private BankUserService userService;
 
-    public RegisterScreen(BufferedReader consoleReader/*, UserService userService*/) {
+    public RegisterScreen(BufferedReader consoleReader, BankUserService userService) {
         super("RegisterScreen", "/register");
         this.consoleReader = consoleReader;
-        //this.userService = userService;
+        this.userService = userService;
     }
 
     public void render() {
@@ -57,7 +59,7 @@ public class RegisterScreen extends Screen {
             password = consoleReader.readLine();
 
             BankUser newUser = new BankUser(firstName, lastName, username, email, password);
-            //userService.register(newUser);
+            userService.register(newUser);
 
         } catch (NumberFormatException nfe) {
             // do something about these!

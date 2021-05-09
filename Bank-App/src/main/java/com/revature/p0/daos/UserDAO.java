@@ -18,13 +18,13 @@ import java.sql.SQLException;
  */
 public class UserDAO {
 
-    public void save(BankUser newUser) {
+    public BankUser save(BankUser newUser) {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
             String sqlInsertUser = "insert into user_table" +
                                     "(email , first_name , last_name) values (?,?,?)";
-            PreparedStatement pstmt = conn.prepareStatement(sqlInsertUser, new String[] { "user_id" });
+            PreparedStatement pstmt = conn.prepareStatement(sqlInsertUser, new String[] { "id" });
 
             pstmt.setString(1,newUser.getEmail());
             pstmt.setString(2,newUser.getfName());
@@ -34,21 +34,26 @@ public class UserDAO {
             if (rowsInserted != 0) {
                 ResultSet rs = pstmt.getGeneratedKeys();
                 while (rs.next()) {
-                    newUser.setuID(rs.getInt("user_id"));
+                    newUser.setuID(rs.getInt("id"));
                 }
             }
 
-            String sqlInsertLogin = "insert into user_table" +
-                    "(user_id , username , password) values (?,?,crypt(?, gen_salt('bf'))";
+            String sqlInsertLogin = "insert into user_login" +
+                    "(user_id , username , password) values (?,?,crypt(?, gen_salt('bf')))";
             pstmt = conn.prepareStatement(sqlInsertLogin);
 
             pstmt.setInt(1,newUser.getuID());
             pstmt.setString(2,newUser.getuName());
             pstmt.setString(3,newUser.getPassword());
 
+            pstmt.executeUpdate();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+        return newUser;
+
     }
 
     public boolean isUsernameAvailable(String username) {
@@ -96,26 +101,42 @@ public class UserDAO {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "select * from bank_app.user_login where" +
-                    "username = ? and password = crypt(?, password)";
+            String encryptedPass = null;
+
+            String sql = "select password from user_login where username = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
-            pstmt.setString(2, password);
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                user = new BankUser();
-                user.setuID(rs.getInt("id"));
-                user.setuName(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
+                encryptedPass = rs.getString("password");
             }
 
-            sql = "select * from bank_app.user_table where id = ?";
-            pstmt.setInt(1, user.getuID());
+            sql = "select * from user_login where " +
+                    "username = ? and password = crypt(?, ?)";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            pstmt.setString(3, encryptedPass);
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 user = new BankUser();
+                user.setuID(rs.getInt("user_id"));
+                user.setuName(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+            }
+
+            if (user == null) {
+                return user;
+            }
+
+            sql = "select * from user_table where id = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, user.getuID());
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
                 user.setfName(rs.getString("first_name"));
                 user.setlName(rs.getString("last_name"));
                 user.setEmail(rs.getString("email"));

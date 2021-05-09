@@ -3,6 +3,7 @@ package com.revature.p0.screens;
 import com.revature.p0.daos.UserDAO;
 import com.revature.p0.models.account.BankUser;
 import com.revature.p0.util.scenemgmt.ScreenRouter;
+import com.revature.p0.util.singleton.LoggedInUser;
 
 import java.io.BufferedReader;
 
@@ -32,7 +33,7 @@ public class LoginScreen extends Screen {
             String password;
 
             System.out.println("Log into your account!");
-            System.out.println("+---------------------+");
+            System.out.println("+--------------------+");
 
             System.out.print("Username: ");
             username = consoleReader.readLine();
@@ -43,8 +44,9 @@ public class LoginScreen extends Screen {
             if (username != null && !username.isEmpty() && password != null && !password.isEmpty()) {
                 BankUser authenticatedUser = userDao.findUserByUsernameAndPassword(username, password);
                 if (authenticatedUser != null) {
+                    LoggedInUser.getInstance().setLoggedInUser(authenticatedUser);
                     System.out.println("Login successful!");
-                    router.navigate("/dashboard");
+                    router.navigate("/accounts");
 
                 } else {
                     System.out.println("Login failed!");
