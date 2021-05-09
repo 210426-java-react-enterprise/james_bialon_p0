@@ -20,6 +20,7 @@ create table Account_Type (
 
 create table Account (
 	Id serial primary key,
+	acct_name varchar(50) not null,
 	User_Id int not null,
 	Joint_User_Id int,
 	Type_Id int not null,

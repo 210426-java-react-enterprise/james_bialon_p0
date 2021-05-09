@@ -26,7 +26,7 @@ public class AccountTypeDAO {
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
             String sqlCountAcctTypes = "select count(*)" +
-                    "from bank_app.account_type";
+                    "from account_type";
             PreparedStatement pstmt = conn.prepareStatement(sqlCountAcctTypes);
 
             ResultSet rs = pstmt.executeQuery();
@@ -38,7 +38,7 @@ public class AccountTypeDAO {
             acctTypes = new AccountType[numOfTypes];
 
             String sqlGetAcctTypes = "select *" +
-                    "from bank_app.account_type";
+                    "from account_type";
             pstmt = conn.prepareStatement(sqlGetAcctTypes);
 
             rs = pstmt.executeQuery();
@@ -62,6 +62,13 @@ public class AccountTypeDAO {
         }
 
         return acctTypes;
+    }
+
+    public static void main(String[] args) {
+
+        AccountTypeDAO dao = new AccountTypeDAO();
+
+        System.out.println(dao.getAllAcctTypes()[0].getInterest());
     }
 
 }

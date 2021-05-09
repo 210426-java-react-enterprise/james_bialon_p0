@@ -9,6 +9,7 @@ package com.revature.p0.models.account;
  */
 public class Account {
     private int aID;
+    private String aName;
     private int uID;
     private int jUID;
     private int tID;
@@ -17,14 +18,16 @@ public class Account {
         super();
     }
 
-    public Account(int aID, int uID, int jUID, int tID) {
+    public Account(int aID, String aName, int uID, int jUID, int tID) {
         this.aID = aID;
+        this.aName = aName;
         this.uID = uID;
         this.jUID = jUID;
         this.tID = tID;
     }
 
-    public Account(int uID, int jUID, int tID) {
+    public Account(String aName, int uID, int jUID, int tID) {
+        this.aName = aName;
         this.uID = uID;
         this.jUID = jUID;
         this.tID = tID;
@@ -64,5 +67,13 @@ public class Account {
 
     public void settID(int tID) {
         this.tID = tID;
+    }
+
+    public String getaName() {
+        return aName;
+    }
+
+    public void setaName(String aName) {
+        this.aName = aName;
     }
 }

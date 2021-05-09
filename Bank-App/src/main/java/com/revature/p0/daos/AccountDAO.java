@@ -36,32 +36,50 @@ public class AccountDAO {
         }
     }
 
-    public Account getAcct(BankUser bankUser) {
+    public Account[] getAcct(BankUser bankUser) {
 
+        Account[] accts = null;
         Account acct = null;
+        int count = 0;
+        int rsCounter = 0;
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sqlGetAcct = "select *" +
+            String sqlGetNumOfAccts = "select count(*)" +
                     "from bank_app.account where user_id = ?";
-            PreparedStatement pstmt = conn.prepareStatement(sqlGetAcct);
-
-            pstmt.setInt(1,bankUser.getuID());
+            PreparedStatement pstmt = conn.prepareStatement(sqlGetNumOfAccts);
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
+                count = rs.getInt("count");
+            }
+
+            accts = new Account[count];
+
+            String sqlGetAcct = "select *" +
+                    "from bank_app.account where user_id = ?";
+            pstmt = conn.prepareStatement(sqlGetAcct);
+
+            pstmt.setInt(1,bankUser.getuID());
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
                 acct = new Account();
+
                 acct.setaID(rs.getInt("id"));
+                acct.setaName(rs.getString("acct_name"));
                 acct.setuID(rs.getInt("user_id"));
                 acct.setjUID(rs.getInt("joint_user_id"));
                 acct.settID(rs.getInt("type_id"));
+
+                accts[rsCounter] = acct;
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        return acct;
+        return accts;
 
     }
 }

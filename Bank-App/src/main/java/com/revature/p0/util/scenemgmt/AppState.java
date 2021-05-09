@@ -1,6 +1,7 @@
 package com.revature.p0.util.scenemgmt;
 
 import com.revature.p0.daos.UserDAO;
+import com.revature.p0.screens.AccountScreen;
 import com.revature.p0.screens.LoginScreen;
 import com.revature.p0.screens.RegisterScreen;
 import com.revature.p0.screens.WelcomeScreen;
@@ -32,7 +33,8 @@ public class AppState{
         router = new ScreenRouter();
         router.addScreen(new WelcomeScreen(consoleReader, router))
                 .addScreen(new LoginScreen(consoleReader, router))
-                .addScreen(new RegisterScreen(consoleReader/*, userService*/));
+                .addScreen(new RegisterScreen(consoleReader/*, userService*/))
+                .addScreen(new AccountScreen(consoleReader, router));
 
         System.out.println("Application initialized!");
     }
