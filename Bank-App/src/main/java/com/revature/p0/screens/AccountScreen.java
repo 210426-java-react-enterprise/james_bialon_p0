@@ -64,6 +64,7 @@ public class AccountScreen extends Screen {
 
                 userSelection = consoleReader.readLine();
 
+                m = p.matcher(userSelection);
             }
 
             if (userSelection.equals("0")) {
@@ -89,6 +90,8 @@ public class AccountScreen extends Screen {
                     showAccountInfo(userAccounts[Integer.parseInt(userSelection)]);
 
                     userSelection = consoleReader.readLine();
+
+                    m = p.matcher(userSelection);
 
                 }
 

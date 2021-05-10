@@ -16,6 +16,12 @@ public class AccountTransaction {
     public AccountTransaction() {
     }
 
+    public AccountTransaction(int acctID, String description, double transactionAmt) {
+        this.acctID = acctID;
+        this.description = description;
+        this.transactionAmt = transactionAmt;
+    }
+
     public AccountTransaction(int acctID, int transactionID, String description, double transactionAmt) {
         this.acctID = acctID;
         this.transactionID = transactionID;

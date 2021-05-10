@@ -19,17 +19,28 @@ import java.sql.SQLException;
 public class AccountDAO {
     public void saveNewAcct(Account newAcct) {
 
+        AccountBalanceDAO balanceDAO = new AccountBalanceDAO();
+
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sqlInsertAcct = "insert into bank_app.account" +
+            String sqlInsertAcct = "insert into account " +
                     "(user_id , type_id, acct_name) values (?,?,?)";
-            PreparedStatement pstmt = conn.prepareStatement(sqlInsertAcct);
+            PreparedStatement pstmt = conn.prepareStatement(sqlInsertAcct, new String[] { "id" });
 
             pstmt.setInt(1,newAcct.getuID());
             pstmt.setInt(2, newAcct.gettID());
             pstmt.setString(3, newAcct.getaName());
-            pstmt.executeUpdate();
 
+            int rowsInserted = pstmt.executeUpdate();
+
+            if (rowsInserted != 0) {
+                ResultSet rs = pstmt.getGeneratedKeys();
+                while (rs.next()) {
+                    newAcct.setuID(rs.getInt("id"));
+                }
+            }
+
+            balanceDAO.saveNewBalance(newAcct);
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -45,7 +56,7 @@ public class AccountDAO {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sqlGetNumOfAccts = "select count(*)" +
+            String sqlGetNumOfAccts = "select count(*) " +
                     "from bank_app.account where user_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sqlGetNumOfAccts);
             pstmt.setInt(1,bankUser.getuID());
@@ -57,8 +68,8 @@ public class AccountDAO {
 
             accts = new Account[count];
 
-            String sqlGetAcct = "select *" +
-                    "from bank_app.account where user_id = ?";
+            String sqlGetAcct = "select * " +
+                    "from account where user_id = ?";
             pstmt = conn.prepareStatement(sqlGetAcct);
 
             pstmt.setInt(1,bankUser.getuID());
@@ -74,6 +85,7 @@ public class AccountDAO {
                 acct.settID(rs.getInt("type_id"));
 
                 accts[rsCounter] = acct;
+                rsCounter++;
             }
 
         } catch (SQLException throwables) {

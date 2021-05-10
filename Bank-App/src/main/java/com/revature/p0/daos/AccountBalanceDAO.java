@@ -34,16 +34,16 @@ public class AccountBalanceDAO {
         }
     }
 
-    public void saveBalance(Account acct, float currBalance) {
+    public void saveBalance(Account acct, double currBalance) {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sqlInsertAcctBal = "insert into bank_app.account_balance" +
-                    "(account_id , balance) values (?,?)";
+            String sqlInsertAcctBal = "update account_balance" +
+                    "set balance = ? where account_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sqlInsertAcctBal);
 
-            pstmt.setInt(1, acct.getaID());
-            pstmt.setDouble(2, currBalance);
+            pstmt.setDouble(1, currBalance);
+            pstmt.setInt(2, acct.getaID());
             pstmt.executeUpdate();
 
 

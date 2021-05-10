@@ -56,6 +56,8 @@ public class OpenAccountScreen extends Screen{
 
                 userSelection = consoleReader.readLine();
 
+                m = p.matcher(userSelection);
+
             }
 
             newAcct.setuID(LoggedInUser.getInstance().getLoggedInUser().getuID());
@@ -64,7 +66,7 @@ public class OpenAccountScreen extends Screen{
             System.out.print("Account Name: ");
             userSelection = consoleReader.readLine();
 
-            while (userSelection.length() < 1) {
+            while (userSelection.trim().length() < 1) {
                 System.out.println();
                 System.out.println("Please enter a proper name");
                 System.out.println();
