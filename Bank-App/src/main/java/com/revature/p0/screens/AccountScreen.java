@@ -100,12 +100,17 @@ public class AccountScreen extends Screen {
                         System.out.println("Have a beautiful time!");
                         Thread.sleep(1000);
                         app().setAppRunning(false);
+                        break;
 
                     case "1":
-                        //TODO deposit screen
+                        System.out.println("Routing to deposit screen...");
+                        router.navigate("/deposit");
+                        break;
 
                     case "2":
-                        //TODO withdraw screen
+                        System.out.println("Routing to withdraw screen...");
+                        router.navigate("/withdraw");
+                        break;
 
                     case "3":
                         //TODO transaction screen

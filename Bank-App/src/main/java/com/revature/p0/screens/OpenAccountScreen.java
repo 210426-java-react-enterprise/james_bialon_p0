@@ -47,7 +47,7 @@ public class OpenAccountScreen extends Screen{
 
             Matcher m = p.matcher(userSelection);
 
-            while (Integer.parseInt(userSelection) < 0 || Integer.parseInt(userSelection) > 3 || !m.matches()) {
+            while (Integer.parseInt(userSelection) < 0 || Integer.parseInt(userSelection) > 2 || !m.matches()) {
 
                 System.out.println();
                 System.out.println("Invalid selection.");
@@ -58,6 +58,10 @@ public class OpenAccountScreen extends Screen{
 
                 m = p.matcher(userSelection);
 
+            }
+
+            if (userSelection.equals("0")) {
+                router.navigate("/accounts");
             }
 
             newAcct.setuID(LoggedInUser.getInstance().getLoggedInUser().getuID());
@@ -71,11 +75,13 @@ public class OpenAccountScreen extends Screen{
                 System.out.println("Please enter a proper name");
                 System.out.println();
                 System.out.print("Account Name: ");
+
+                userSelection = consoleReader.readLine();
             }
 
             newAcct.setaName(userSelection);
 
-            acctDAO.saveNewAcct(newAcct);
+            newAcct = acctDAO.saveNewAcct(newAcct);
 
             System.out.println("Account created successful!");
             router.navigate("/accounts");

@@ -38,7 +38,7 @@ public class AccountBalanceDAO {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sqlInsertAcctBal = "update account_balance" +
+            String sqlInsertAcctBal = "update account_balance " +
                     "set balance = ? where account_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sqlInsertAcctBal);
 

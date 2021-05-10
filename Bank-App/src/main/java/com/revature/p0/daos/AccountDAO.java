@@ -17,7 +17,7 @@ import java.sql.SQLException;
  * Description: {Insert Description}
  */
 public class AccountDAO {
-    public void saveNewAcct(Account newAcct) {
+    public Account saveNewAcct(Account newAcct) {
 
         AccountBalanceDAO balanceDAO = new AccountBalanceDAO();
 
@@ -36,7 +36,7 @@ public class AccountDAO {
             if (rowsInserted != 0) {
                 ResultSet rs = pstmt.getGeneratedKeys();
                 while (rs.next()) {
-                    newAcct.setuID(rs.getInt("id"));
+                    newAcct.setaID(rs.getInt("id"));
                 }
             }
 
@@ -45,6 +45,9 @@ public class AccountDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+        return newAcct;
+
     }
 
     public Account[] getAcct(BankUser bankUser) {
