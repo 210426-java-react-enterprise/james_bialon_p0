@@ -59,7 +59,7 @@ public class OpenAccountScreen extends Screen{
             }
 
             newAcct.setuID(LoggedInUser.getInstance().getLoggedInUser().getuID());
-            newAcct.settID(acctTypes[Integer.parseInt(userSelection)].getId());
+            newAcct.settID(acctTypes[Integer.parseInt(userSelection) - 1].getId());
 
             System.out.print("Account Name: ");
             userSelection = consoleReader.readLine();
