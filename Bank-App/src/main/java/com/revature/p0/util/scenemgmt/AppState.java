@@ -35,7 +35,8 @@ public class AppState{
                 .addScreen(new AccountScreen(consoleReader, router))
                 .addScreen(new OpenAccountScreen(consoleReader, router))
                 .addScreen(new DepositScreen(consoleReader, router))
-                .addScreen(new WithdrawScreen(consoleReader, router));
+                .addScreen(new WithdrawScreen(consoleReader, router))
+                .addScreen(new TransactionScreen(consoleReader, router));
 
         System.out.println("Application initialized!");
     }

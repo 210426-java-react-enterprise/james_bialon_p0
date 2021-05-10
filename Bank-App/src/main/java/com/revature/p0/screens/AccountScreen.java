@@ -113,7 +113,9 @@ public class AccountScreen extends Screen {
                         break;
 
                     case "3":
-                        //TODO transaction screen
+                        System.out.println("Routing to transaction screen...");
+                        router.navigate("/transactions");
+                        break;
                 }
 
             }

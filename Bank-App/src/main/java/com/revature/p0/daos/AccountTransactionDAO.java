@@ -19,7 +19,7 @@ import java.sql.SQLException;
  * Description: {Insert Description}
  */
 public class AccountTransactionDAO {
-    public AccountTransaction[] getAllAcctTransactions(BankUser user) {
+    public AccountTransaction[] getAllAcctTransactions(Account acct) {
         AccountTransaction[] acctTransactions = null;
         AccountTransaction acctTransaction = null;
         int numOfTransactions = 0;
@@ -27,11 +27,11 @@ public class AccountTransactionDAO {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sqlCountAcctTransactions = "select count(*)" +
-                    "from bank_app.account_Transaction where account_id = ?";
+            String sqlCountAcctTransactions = "select count(*) " +
+                    "from account_Transaction where account_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sqlCountAcctTransactions);
 
-            pstmt.setInt(1, user.getuID());
+            pstmt.setInt(1, acct.getaID());
 
             ResultSet rs = pstmt.executeQuery();
 
@@ -41,12 +41,12 @@ public class AccountTransactionDAO {
 
             acctTransactions = new AccountTransaction[numOfTransactions];
 
-            String sqlGetAcctTransactions = "select *" +
-                    "from bank_app.account_Transaction where account_id = ?" +
-                    "order by desc;";
+            String sqlGetAcctTransactions = "select * " +
+                    "from account_Transaction where account_id = ? " +
+                    "order by id desc;";
             pstmt = conn.prepareStatement(sqlGetAcctTransactions);
 
-            pstmt.setInt(1, user.getuID());
+            pstmt.setInt(1, acct.getaID());
 
             rs = pstmt.executeQuery();
 
