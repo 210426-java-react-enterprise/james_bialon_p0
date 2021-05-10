@@ -6,6 +6,7 @@ import com.revature.p0.daos.UserDAO;
 import com.revature.p0.models.account.Account;
 import com.revature.p0.models.account.BankUser;
 import com.revature.p0.util.scenemgmt.ScreenRouter;
+import com.revature.p0.util.singleton.CurrentAccount;
 import com.revature.p0.util.singleton.LoggedInUser;
 
 import java.io.BufferedReader;
@@ -73,7 +74,8 @@ public class AccountScreen extends Screen {
             } else {
 
                 System.out.println();
-                showAccountInfo(userAccounts[Integer.parseInt(userSelection) - 1]);
+                CurrentAccount.getInstance().setCurrentAccount(userAccounts[Integer.parseInt(userSelection) - 1]);
+                showAccountInfo(CurrentAccount.getInstance().getCurrentAccount());
 
                 userSelection = consoleReader.readLine();
 
