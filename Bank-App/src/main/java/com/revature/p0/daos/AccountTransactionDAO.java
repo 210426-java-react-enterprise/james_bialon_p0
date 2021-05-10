@@ -3,6 +3,7 @@ package com.revature.p0.daos;
 import com.revature.p0.models.account.Account;
 import com.revature.p0.models.account.AccountTransaction;
 import com.revature.p0.models.account.AccountType;
+import com.revature.p0.models.account.BankUser;
 import com.revature.p0.util.factory.ConnectionFactory;
 
 import java.sql.Connection;
@@ -18,7 +19,7 @@ import java.sql.SQLException;
  * Description: {Insert Description}
  */
 public class AccountTransactionDAO {
-    public AccountTransaction[] getAllAcctTransactions() {
+    public AccountTransaction[] getAllAcctTransactions(BankUser user) {
         AccountTransaction[] acctTransactions = null;
         AccountTransaction acctTransaction = null;
         int numOfTransactions = 0;
@@ -27,8 +28,10 @@ public class AccountTransactionDAO {
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
             String sqlCountAcctTransactions = "select count(*)" +
-                    "from bank_app.account_Transaction";
+                    "from bank_app.account_Transaction where account_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sqlCountAcctTransactions);
+
+            pstmt.setInt(1, user.getuID());
 
             ResultSet rs = pstmt.executeQuery();
 
@@ -39,8 +42,11 @@ public class AccountTransactionDAO {
             acctTransactions = new AccountTransaction[numOfTransactions];
 
             String sqlGetAcctTransactions = "select *" +
-                    "from bank_app.account_Transaction";
+                    "from bank_app.account_Transaction where account_id = ?" +
+                    "order by desc;";
             pstmt = conn.prepareStatement(sqlGetAcctTransactions);
+
+            pstmt.setInt(1, user.getuID());
 
             rs = pstmt.executeQuery();
 

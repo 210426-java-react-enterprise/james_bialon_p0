@@ -9,6 +9,8 @@ import com.revature.p0.util.scenemgmt.ScreenRouter;
 import com.revature.p0.util.singleton.LoggedInUser;
 
 import java.io.BufferedReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.revature.p0.Driver.app;
 
@@ -25,6 +27,9 @@ public class AccountScreen extends Screen {
     private BufferedReader consoleReader;
     private ScreenRouter router;
     private BankUser user;
+
+    String regex = "[0-9]+";
+    Pattern p = Pattern.compile(regex);
 
     public AccountScreen(BufferedReader consoleReader, ScreenRouter router) {
         super("AccountScreen", "/accounts");
@@ -47,7 +52,9 @@ public class AccountScreen extends Screen {
 
             String userSelection = consoleReader.readLine();
 
-            while (Integer.parseInt(userSelection) < 0 || Integer.parseInt(userSelection) > userAccounts.length) {
+            Matcher m = p.matcher(userSelection);
+
+            while (Integer.parseInt(userSelection) < 0 || Integer.parseInt(userSelection) > userAccounts.length || !m.matches()) {
 
                 System.out.println();
                 System.out.println("Invalid selection.");
@@ -58,18 +65,21 @@ public class AccountScreen extends Screen {
 
             }
 
-            if (userSelection.equals(0)) {
+            if (userSelection.equals("0")) {
 
-                //TODO: route user to bank account opening screen
+                System.out.println("Routing to account opening screen...");
+                router.navigate("/openAcct");
 
             } else {
 
                 System.out.println();
-                showAccountInfo(userAccounts[Integer.parseInt(userSelection)]);
+                showAccountInfo(userAccounts[Integer.parseInt(userSelection) - 1]);
 
                 userSelection = consoleReader.readLine();
 
-                while (Integer.parseInt(userSelection) < 0 || Integer.parseInt(userSelection) > 3) {
+                p.matcher(userSelection);
+
+                while (Integer.parseInt(userSelection) < 0 || Integer.parseInt(userSelection) > 3 || !m.matches()) {
 
                     System.out.println();
                     System.out.println("Invalid selection.");
@@ -126,7 +136,7 @@ public class AccountScreen extends Screen {
 
         AccountBalanceDAO balanceDAO = new AccountBalanceDAO();
 
-        System.out.printf("Account Name: %s\nBalance: %f", acct.getaName(), balanceDAO.getBalance(acct));
+        System.out.printf("Account Name: %s\nBalance: $%.2f", acct.getaName(), balanceDAO.getBalance(acct));
         System.out.println("");
 
         System.out.println("1 - Deposit");

@@ -17,17 +17,17 @@ import java.sql.SQLException;
  * Description: {Insert Description}
  */
 public class AccountDAO {
-    public void saveNewAcct(Account newAcct, BankUser bankUser, int acctType) {
+    public void saveNewAcct(Account newAcct) {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
             String sqlInsertAcct = "insert into bank_app.account" +
-                    "(user_id , join_user_id, type_id) values (?,?,?)";
+                    "(user_id , type_id, acct_name) values (?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sqlInsertAcct);
 
-            pstmt.setInt(1,bankUser.getuID());
-            pstmt.setString(2,"null");
-            pstmt.setInt(3, acctType);
+            pstmt.setInt(1,newAcct.getuID());
+            pstmt.setInt(2, newAcct.gettID());
+            pstmt.setString(3, newAcct.getaName());
             pstmt.executeUpdate();
 
 

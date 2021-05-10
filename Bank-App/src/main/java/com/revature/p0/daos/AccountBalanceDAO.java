@@ -58,8 +58,8 @@ public class AccountBalanceDAO {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sqlInsertAcctBal = "select balance" +
-                    "from bank_app.account_balance where account_id = ?";
+            String sqlInsertAcctBal = "select balance " +
+                    "from account_balance where account_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sqlInsertAcctBal);
 
             pstmt.setInt(1, acct.getaID());
