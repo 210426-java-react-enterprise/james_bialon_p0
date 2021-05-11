@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 public class WithdrawService {
 
     AccountBalanceDAO balanceDAO;
-    private AccountTransactionDAO transactionDAO = new AccountTransactionDAO();
+    AccountTransactionService xActionService = new AccountTransactionService(new AccountTransactionDAO());
 
     public WithdrawService(AccountBalanceDAO balanceDAO) {
         this.balanceDAO = balanceDAO;
@@ -33,7 +33,7 @@ public class WithdrawService {
 
         double newBalance = balanceDAO.getBalance(CurrentAccount.getInstance().getCurrentAccount()) - Double.parseDouble(usrInput);
 
-        sendBalanceAsTransaction(usrInput);
+        xActionService.sendBalanceAsTransaction(usrInput);
         return balanceDAO.saveBalance(CurrentAccount.getInstance().getCurrentAccount(), newBalance);
 
     }
@@ -52,16 +52,6 @@ public class WithdrawService {
         return true;
     }
 
-    private void sendBalanceAsTransaction(String transactionAmt) {
 
-        AccountTransaction newTransaction = new AccountTransaction();
-
-        newTransaction.setAcctID(CurrentAccount.getInstance().getCurrentAccount().getaID());
-        newTransaction.setTransactionAmt(Double.parseDouble(transactionAmt));
-        newTransaction.setDescription("Withdraw");
-
-        transactionDAO.saveTransaction(newTransaction);
-
-    }
 
 }

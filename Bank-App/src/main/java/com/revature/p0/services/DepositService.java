@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 public class DepositService {
 
     AccountBalanceDAO balanceDAO;
-    private AccountTransactionDAO transactionDAO = new AccountTransactionDAO();
+    AccountTransactionService xActionService = new AccountTransactionService(new AccountTransactionDAO());
 
     public DepositService(AccountBalanceDAO balanceDAO) {
         this.balanceDAO = balanceDAO;
@@ -34,7 +34,7 @@ public class DepositService {
         double newBalance = balanceDAO.getBalance(CurrentAccount.getInstance().getCurrentAccount()) + Double.parseDouble(usrInput);
 
 
-        sendBalanceAsTransaction(usrInput);
+        xActionService.sendBalanceAsTransaction(usrInput);
         return balanceDAO.saveBalance(CurrentAccount.getInstance().getCurrentAccount(), newBalance);
 
     }
@@ -48,17 +48,5 @@ public class DepositService {
         if (usrInput == null || usrInput.trim().isEmpty() || usrInput.contains("-") || usrInput.contains(" ") || !m.matches()) return false;
 
         return true;
-    }
-
-    private void sendBalanceAsTransaction(String transactionAmt) {
-
-        AccountTransaction newTransaction = new AccountTransaction();
-
-        newTransaction.setAcctID(CurrentAccount.getInstance().getCurrentAccount().getaID());
-        newTransaction.setTransactionAmt(Double.parseDouble(transactionAmt));
-        newTransaction.setDescription("Deposit");
-
-        transactionDAO.saveTransaction(newTransaction);
-
     }
 }
