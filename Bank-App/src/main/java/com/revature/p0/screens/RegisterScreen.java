@@ -1,9 +1,13 @@
 package com.revature.p0.screens;
 
+import com.revature.p0.exceptions.InvalidRequestException;
+import com.revature.p0.exceptions.ResourcePersistenceException;
 import com.revature.p0.models.account.BankUser;
 import com.revature.p0.services.BankUserService;
 
 import java.io.BufferedReader;
+
+import static com.revature.p0.Driver.app;
 
 /**
  * Created by IntelliJ IDEA.
@@ -14,7 +18,6 @@ import java.io.BufferedReader;
  */
 public class RegisterScreen extends Screen {
 
-    //private UserService userService;
     private BufferedReader consoleReader;
     private BankUserService userService;
 
@@ -61,13 +64,15 @@ public class RegisterScreen extends Screen {
             BankUser newUser = new BankUser(firstName, lastName, username, email, password);
             userService.register(newUser);
 
-        } catch (NumberFormatException nfe) {
-            // do something about these!
-            System.err.println("You provided an incorrect value for your age! Please try again!");
-            this.render(); // this breaks some stuff! we will need to fix this
-        } /*catch (InvalidRequestException | ResourcePersistenceException e) {
-            e.printStackTrace();
-        }*/ catch (Exception e) {
+        } catch (InvalidRequestException ire) {
+            System.out.println("Invalid entry, please try again.");
+            app().getRouter().navigate("/welcome");
+
+        } catch (ResourcePersistenceException rpe) {
+            System.out.println("Username or email already taken.");
+            app().getRouter().navigate("/welcome");
+
+        } catch (Exception e) {
             e.printStackTrace(); // include this line while developing/debugging the app!
             // should be logged to a file in a production environment
         }

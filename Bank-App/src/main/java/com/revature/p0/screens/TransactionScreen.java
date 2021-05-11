@@ -7,6 +7,8 @@ import com.revature.p0.util.singleton.CurrentAccount;
 
 import java.io.BufferedReader;
 
+import static com.revature.p0.Driver.app;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Jbialon
@@ -17,13 +19,11 @@ import java.io.BufferedReader;
 public class TransactionScreen extends Screen {
 
     private BufferedReader consoleReader;
-    private ScreenRouter router;
-    private AccountTransactionDAO transactionDAO = new AccountTransactionDAO();
+    private AccountTransactionDAO transactionDAO;
 
-    public TransactionScreen(BufferedReader consoleReader, ScreenRouter router) {
+    public TransactionScreen(BufferedReader consoleReader, AccountTransactionDAO transactionDAO) {
         super("DepositScreen", "/transactions");
         this.consoleReader = consoleReader;
-        this.router = router;
     }
 
     public void render() {
@@ -56,7 +56,7 @@ public class TransactionScreen extends Screen {
                 userSelection = consoleReader.readLine();
             }
 
-            router.navigate("/accounts");
+            app().getRouter().navigate("/accounts");
 
         } catch (Exception e) {
             e.printStackTrace();

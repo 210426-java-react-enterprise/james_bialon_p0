@@ -7,6 +7,8 @@ import com.revature.p0.util.singleton.LoggedInUser;
 
 import java.io.BufferedReader;
 
+import static com.revature.p0.Driver.app;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Jbialon
@@ -16,14 +18,13 @@ import java.io.BufferedReader;
  */
 public class LoginScreen extends Screen {
 
-    private UserDAO userDao = new UserDAO();
+    private UserDAO userDao;
     private BufferedReader consoleReader;
-    private ScreenRouter router;
 
-    public LoginScreen(BufferedReader consoleReader, ScreenRouter router) {
+    public LoginScreen(BufferedReader consoleReader, UserDAO userDAO) {
         super("LoginScreen", "/login");
         this.consoleReader = consoleReader;
-        this.router = router;
+        this.userDao = userDAO;
     }
 
     public void render() {
@@ -46,7 +47,7 @@ public class LoginScreen extends Screen {
                 if (authenticatedUser != null) {
                     LoggedInUser.getInstance().setLoggedInUser(authenticatedUser);
                     System.out.println("Login successful!");
-                    router.navigate("/accounts");
+                    app().getRouter().navigate("/accounts");
 
                 } else {
                     System.out.println("Login failed!");
@@ -55,7 +56,7 @@ public class LoginScreen extends Screen {
                         The below code is not necessary, because if the login fails, we will fall
                         out of this method
                      */
-                    router.navigate("/welcome");
+                    app().getRouter().navigate("/welcome");
                 }
             } else {
                 System.out.println("It looks like you didn't provide any credentials!");

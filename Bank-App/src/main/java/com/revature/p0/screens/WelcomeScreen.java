@@ -15,12 +15,10 @@ import java.io.BufferedReader;
 public class WelcomeScreen extends Screen {
 
     private BufferedReader consoleReader;
-    private ScreenRouter router;
 
-    public WelcomeScreen(BufferedReader consoleReader, ScreenRouter router) {
+    public WelcomeScreen(BufferedReader consoleReader) {
         super("WelcomeScreen", "/welcome");
         this.consoleReader = consoleReader;
-        this.router = router;
     }
 
     @Override
@@ -38,11 +36,11 @@ public class WelcomeScreen extends Screen {
             switch (userSelection) {
                 case "1":
                     System.out.println("Navigating to login screen");
-                    router.navigate("/login");
+                    app().getRouter().navigate("/login");
                     break;
                 case "2":
                     System.out.println("Navigating to register screen");
-                    router.navigate("/register");
+                    app().getRouter().navigate("/register");
                     break;
                 case "3":
                     System.out.println("Exiting application!");

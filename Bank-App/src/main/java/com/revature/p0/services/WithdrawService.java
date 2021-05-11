@@ -18,10 +18,11 @@ import java.util.regex.Pattern;
 public class WithdrawService {
 
     AccountBalanceDAO balanceDAO;
-    AccountTransactionService xActionService = new AccountTransactionService(new AccountTransactionDAO());
+    AccountTransactionService xActionService;
 
-    public WithdrawService(AccountBalanceDAO balanceDAO) {
+    public WithdrawService(AccountBalanceDAO balanceDAO, AccountTransactionDAO xActionDAO) {
         this.balanceDAO = balanceDAO;
+        this.xActionService = new AccountTransactionService(xActionDAO);
     }
 
     public boolean createBalance(String usrInput) throws InvalidRequestException {

@@ -1,17 +1,11 @@
 package com.revature.p0.screens;
 
-import com.revature.p0.daos.AccountBalanceDAO;
 import com.revature.p0.daos.AccountTransactionDAO;
 import com.revature.p0.exceptions.InvalidRequestException;
-import com.revature.p0.models.account.AccountTransaction;
-import com.revature.p0.services.DepositService;
 import com.revature.p0.services.WithdrawService;
-import com.revature.p0.util.scenemgmt.ScreenRouter;
-import com.revature.p0.util.singleton.CurrentAccount;
 
 import java.io.BufferedReader;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 import static com.revature.p0.Driver.app;
 
@@ -25,8 +19,6 @@ import static com.revature.p0.Driver.app;
 public class WithdrawScreen extends Screen{
 
     private BufferedReader consoleReader;
-
-    private AccountTransactionDAO transactionDAO = new AccountTransactionDAO();
     private WithdrawService withdrawService;
 
     public WithdrawScreen(BufferedReader consoleReader, WithdrawService withdrawService) {
