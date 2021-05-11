@@ -1,6 +1,7 @@
 package com.revature.p0.daos;
 
 import com.revature.p0.models.account.Account;
+import com.revature.p0.models.account.AccountBalance;
 import com.revature.p0.models.account.BankUser;
 import com.revature.p0.util.factory.ConnectionFactory;
 
@@ -34,7 +35,7 @@ public class AccountBalanceDAO {
         }
     }
 
-    public void saveBalance(Account acct, double currBalance) {
+    public boolean saveBalance(Account acct, double currBalance) {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
@@ -50,6 +51,10 @@ public class AccountBalanceDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+
+        return true;
+
     }
 
     public double getBalance(Account acct) {

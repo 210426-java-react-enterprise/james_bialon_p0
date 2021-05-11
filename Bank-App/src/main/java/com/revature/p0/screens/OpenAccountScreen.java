@@ -3,13 +3,17 @@ package com.revature.p0.screens;
 import com.revature.p0.daos.AccountDAO;
 import com.revature.p0.daos.AccountTypeDAO;
 import com.revature.p0.models.account.Account;
+import com.revature.p0.models.account.AccountBalance;
 import com.revature.p0.models.account.AccountType;
+import com.revature.p0.services.AccountOpeningService;
 import com.revature.p0.util.scenemgmt.ScreenRouter;
 import com.revature.p0.util.singleton.LoggedInUser;
 
 import java.io.BufferedReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.revature.p0.Driver.app;
 
 /**
  * Created by IntelliJ IDEA.
@@ -21,18 +25,17 @@ import java.util.regex.Pattern;
 public class OpenAccountScreen extends Screen{
 
     private AccountTypeDAO acctTypeDAO = new AccountTypeDAO();
-    private AccountDAO acctDAO = new AccountDAO();
     private Account newAcct = new Account();
     private BufferedReader consoleReader;
-    private ScreenRouter router;
+    private AccountOpeningService openService;
 
     String regex = "[0-9]+";
     Pattern p = Pattern.compile(regex);
 
-    public OpenAccountScreen(BufferedReader consoleReader, ScreenRouter router) {
+    public OpenAccountScreen(BufferedReader consoleReader, AccountOpeningService openService) {
         super("OpenAccountScreen", "/openAcct");
         this.consoleReader = consoleReader;
-        this.router = router;
+        this.openService = openService;
     }
 
     public void render() {
@@ -61,7 +64,7 @@ public class OpenAccountScreen extends Screen{
             }
 
             if (userSelection.equals("0")) {
-                router.navigate("/accounts");
+                app().getRouter().navigate("/accounts");
             }
 
             newAcct.setuID(LoggedInUser.getInstance().getLoggedInUser().getuID());
@@ -81,10 +84,10 @@ public class OpenAccountScreen extends Screen{
 
             newAcct.setaName(userSelection);
 
-            newAcct = acctDAO.saveNewAcct(newAcct);
+            newAcct = openService.createAccount(newAcct);
 
             System.out.println("Account created successful!");
-            router.navigate("/accounts");
+            app().getRouter().navigate("/accounts");
 
         } catch (Exception e) {
             e.printStackTrace();
