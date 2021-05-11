@@ -19,15 +19,16 @@ public class AccountTransactionService {
         this.transactionDAO = transactionDAO;
     }
 
-    public void sendBalanceAsTransaction(String transactionAmt) {
+    public boolean sendBalanceAsTransaction(String transactionAmt, String description) {
 
         AccountTransaction newTransaction = new AccountTransaction();
 
         newTransaction.setAcctID(CurrentAccount.getInstance().getCurrentAccount().getaID());
         newTransaction.setTransactionAmt(Double.parseDouble(transactionAmt));
-        newTransaction.setDescription("Withdraw");
+        newTransaction.setDescription(description);
 
         transactionDAO.saveTransaction(newTransaction);
 
+        return true;
     }
 }

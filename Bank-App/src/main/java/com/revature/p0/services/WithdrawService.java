@@ -3,7 +3,6 @@ package com.revature.p0.services;
 import com.revature.p0.daos.AccountBalanceDAO;
 import com.revature.p0.daos.AccountTransactionDAO;
 import com.revature.p0.exceptions.InvalidRequestException;
-import com.revature.p0.models.account.AccountTransaction;
 import com.revature.p0.util.singleton.CurrentAccount;
 
 import java.util.regex.Matcher;
@@ -33,7 +32,7 @@ public class WithdrawService {
 
         double newBalance = balanceDAO.getBalance(CurrentAccount.getInstance().getCurrentAccount()) - Double.parseDouble(usrInput);
 
-        xActionService.sendBalanceAsTransaction(usrInput);
+        xActionService.sendBalanceAsTransaction(usrInput, "Withdraw");
         return balanceDAO.saveBalance(CurrentAccount.getInstance().getCurrentAccount(), newBalance);
 
     }
