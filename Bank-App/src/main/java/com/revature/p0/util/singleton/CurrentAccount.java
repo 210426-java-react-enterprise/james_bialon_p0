@@ -1,7 +1,7 @@
 package com.revature.p0.util.singleton;
 
 import com.revature.p0.models.account.Account;
-import com.revature.p0.models.account.BankUser;
+
 
 /**
  * Created by IntelliJ IDEA.

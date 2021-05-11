@@ -2,7 +2,6 @@ package com.revature.p0.screens;
 
 import com.revature.p0.daos.AccountTransactionDAO;
 import com.revature.p0.models.account.AccountTransaction;
-import com.revature.p0.util.scenemgmt.ScreenRouter;
 import com.revature.p0.util.singleton.CurrentAccount;
 
 import java.io.BufferedReader;

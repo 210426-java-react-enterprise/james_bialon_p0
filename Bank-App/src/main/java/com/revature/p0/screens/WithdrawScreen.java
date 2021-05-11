@@ -1,6 +1,5 @@
 package com.revature.p0.screens;
 
-import com.revature.p0.daos.AccountTransactionDAO;
 import com.revature.p0.exceptions.InvalidRequestException;
 import com.revature.p0.services.WithdrawService;
 

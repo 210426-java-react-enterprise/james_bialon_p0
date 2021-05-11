@@ -2,8 +2,6 @@ package com.revature.p0.daos;
 
 import com.revature.p0.models.account.Account;
 import com.revature.p0.models.account.AccountTransaction;
-import com.revature.p0.models.account.AccountType;
-import com.revature.p0.models.account.BankUser;
 import com.revature.p0.util.factory.ConnectionFactory;
 
 import java.sql.Connection;

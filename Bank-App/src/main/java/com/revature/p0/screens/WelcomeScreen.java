@@ -1,6 +1,5 @@
 package com.revature.p0.screens;
 
-import com.revature.p0.util.scenemgmt.ScreenRouter;
 import static com.revature.p0.Driver.app;
 
 import java.io.BufferedReader;

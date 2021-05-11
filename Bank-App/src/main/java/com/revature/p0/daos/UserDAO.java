@@ -3,7 +3,6 @@ package com.revature.p0.daos;
 import com.revature.p0.models.account.BankUser;
 import com.revature.p0.util.factory.ConnectionFactory;
 
-import java.io.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
