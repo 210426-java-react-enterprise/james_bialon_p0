@@ -50,6 +50,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         return null;
     }
 
+
     @Override
     public T get(int index) {
         if (index < 0 || index > size) {
@@ -91,6 +92,10 @@ public class LinkedList<T> implements List<T>, Queue<T> {
 
     @Override
     public T peek() {
-        return null;
+        if (head.getData() != null) {
+            return (T) "empty";
+        } else {
+            return head.getData();
+        }
     }
 }
