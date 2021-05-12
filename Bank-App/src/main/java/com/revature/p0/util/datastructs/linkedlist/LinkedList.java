@@ -41,14 +41,14 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
 
-    public boolean contains(T data) {
+    /*public boolean contains(T data) {
         return false;
-    }
+    }*/
 
 
-    public T remove(T data) {
+    /*public T remove(T data) {
         return null;
-    }
+    }*/
 
 
     @Override
