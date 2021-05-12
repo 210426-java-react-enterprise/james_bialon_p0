@@ -33,6 +33,8 @@ public class WithdrawService {
 
         double newBalance = balanceDAO.getBalance(CurrentAccount.getInstance().getCurrentAccount()) - Double.parseDouble(usrInput);
 
+        usrInput = "-" + usrInput;
+
         xActionService.sendBalanceAsTransaction(usrInput, "Withdraw");
         return balanceDAO.saveBalance(CurrentAccount.getInstance().getCurrentAccount(), newBalance);
 

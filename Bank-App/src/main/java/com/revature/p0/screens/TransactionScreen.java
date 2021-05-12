@@ -23,11 +23,13 @@ public class TransactionScreen extends Screen {
     public TransactionScreen(BufferedReader consoleReader, AccountTransactionDAO transactionDAO) {
         super("DepositScreen", "/transactions");
         this.consoleReader = consoleReader;
+        this.transactionDAO = transactionDAO;
     }
 
     public void render() {
 
         try {
+            System.out.println(CurrentAccount.getInstance().getCurrentAccount().getaName());
             AccountTransaction[] transactions = transactionDAO.getAllAcctTransactions(CurrentAccount.getInstance().getCurrentAccount());
 
             System.out.println("Transactions");
@@ -38,10 +40,10 @@ public class TransactionScreen extends Screen {
                 if (Double.toString(xAction.getTransactionAmt()).contains("-")) {
                     String negHandler = Double.toString(xAction.getTransactionAmt());
                     negHandler = negHandler.substring(1);
-                    System.out.printf("-$%.2s | %s\n", negHandler, xAction.getDescription());
+                    System.out.printf("-%s%-19s | %-13s\n", "$", negHandler, xAction.getDescription());
 
                 } else {
-                    System.out.printf("$%.2f | %s\n", xAction.getTransactionAmt(), xAction.getDescription());
+                    System.out.printf("%s%-20.2f | %-14s\n","$" , xAction.getTransactionAmt(), xAction.getDescription());
                 }
             }
 

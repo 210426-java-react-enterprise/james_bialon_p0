@@ -41,16 +41,6 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
 
-    /*public boolean contains(T data) {
-        return false;
-    }*/
-
-
-    /*public T remove(T data) {
-        return null;
-    }*/
-
-
     @Override
     public T get(int index) {
         if (index < 0 || index > size) {
@@ -90,12 +80,4 @@ public class LinkedList<T> implements List<T>, Queue<T> {
 
     }
 
-    @Override
-    public T peek() {
-        if (head.getData() != null) {
-            return (T) "empty";
-        } else {
-            return head.getData();
-        }
-    }
 }

@@ -4,5 +4,4 @@ import com.revature.p0.util.collection.Collection;
 
 public interface Queue<T> extends Collection<T> {
     T poll();
-    T peek();
 }
