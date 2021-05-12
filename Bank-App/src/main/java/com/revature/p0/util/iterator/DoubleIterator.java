@@ -7,7 +7,8 @@ import java.util.Iterator;
  * User: Jbialon
  * Date: 5/1/2021
  * Time: 2:18 PM
- * Description: {Insert Description}
+ * Description: Interface extending the regular iterator and adds
+ *              backwards iteration capabilities.
  */
 public interface DoubleIterator<T> extends Iterator<T> {
 

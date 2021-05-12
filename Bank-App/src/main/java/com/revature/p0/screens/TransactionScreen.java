@@ -13,7 +13,7 @@ import static com.revature.p0.Driver.app;
  * User: Jbialon
  * Date: 5/10/2021
  * Time: 4:57 PM
- * Description: {Insert Description}
+ * Description: Transaction screen
  */
 public class TransactionScreen extends Screen {
 
@@ -26,6 +26,11 @@ public class TransactionScreen extends Screen {
         this.transactionDAO = transactionDAO;
     }
 
+    /**
+     *
+     * Description: Displays the transaction screen for the end user.
+     *
+     */
     public void render() {
 
         try {
@@ -33,7 +38,7 @@ public class TransactionScreen extends Screen {
             AccountTransaction[] transactions = transactionDAO.getAllAcctTransactions(CurrentAccount.getInstance().getCurrentAccount());
 
             System.out.println("Transactions");
-            System.out.println("+----------+");
+            System.out.println("+--------------------------------+");
 
 
             for (AccountTransaction xAction : transactions) {

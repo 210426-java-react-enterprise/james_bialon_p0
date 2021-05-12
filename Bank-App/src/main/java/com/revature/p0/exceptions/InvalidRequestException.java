@@ -5,7 +5,7 @@ package com.revature.p0.exceptions;
  * User: Jbialon
  * Date: 5/9/2021
  * Time: 4:11 PM
- * Description: {Insert Description}
+ * Description: Exception thrown on invalid user input.
  */
 public class InvalidRequestException extends RuntimeException {
 

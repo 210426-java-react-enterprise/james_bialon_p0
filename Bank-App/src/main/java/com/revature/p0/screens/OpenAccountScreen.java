@@ -17,7 +17,7 @@ import static com.revature.p0.Driver.app;
  * User: Jbialon
  * Date: 5/9/2021
  * Time: 3:54 PM
- * Description: {Insert Description}
+ * Description: Displays the screen allowing users to open a new account
  */
 public class OpenAccountScreen extends Screen{
 
@@ -35,6 +35,13 @@ public class OpenAccountScreen extends Screen{
         this.openService = openService;
     }
 
+    /**
+     *
+     * Description: Renders the bank account creation screen to the end user.
+     *              Includes in place validation since it's the only time this type of
+     *              validation is used.
+     *
+     */
     public void render() {
 
         try {
@@ -91,6 +98,12 @@ public class OpenAccountScreen extends Screen{
         }
     }
 
+    /**
+     *
+     * Description: Displays all the types of accounts available for creation.
+     *
+     * @param acctTypes
+     */
     private void showAcctTypes(AccountType[] acctTypes) {
 
         int counter = 1;

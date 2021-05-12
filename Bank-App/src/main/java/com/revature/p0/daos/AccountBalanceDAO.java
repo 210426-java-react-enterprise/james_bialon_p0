@@ -14,9 +14,16 @@ import java.sql.SQLException;
  * User: Jbialon
  * Date: 5/7/2021
  * Time: 4:01 PM
- * Description: {Insert Description}
+ * Description: Interacts with the account_balance table within the database.
  */
 public class AccountBalanceDAO {
+
+    /**
+     *
+     * Description: When creating a new bank account this will initialize the accounts balance record.
+     *
+     * @param acct
+     */
     public void saveNewBalance(Account acct) {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
@@ -34,6 +41,14 @@ public class AccountBalanceDAO {
         }
     }
 
+    /**
+     *
+     * Description: Updates the accounts balance record within the database.
+     *
+     * @param acct
+     * @param currBalance
+     * @return
+     */
     public boolean saveBalance(Account acct, double currBalance) {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
@@ -56,6 +71,13 @@ public class AccountBalanceDAO {
 
     }
 
+    /**
+     *
+     * Description: Gets the balance of the desired account from the database.
+     *
+     * @param acct
+     * @return double
+     */
     public double getBalance(Account acct) {
 
         double balance = 0;

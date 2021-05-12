@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  * User: Jbialon
  * Date: 5/11/2021
  * Time: 3:02 PM
- * Description: {Insert Description}
+ * Description: Assures the users withdraw input is valid before persisting to the database.
  */
 public class WithdrawService {
 
@@ -25,6 +25,14 @@ public class WithdrawService {
         this.xActionService = new AccountTransactionService(xActionDAO);
     }
 
+    /**
+     *
+     * Description: If entry is valid this will send the data to the database.
+     *
+     * @param usrInput
+     * @return boolean
+     * @throws InvalidRequestException
+     */
     public boolean createBalance(String usrInput) throws InvalidRequestException {
 
         if (!isWithdrawValid(usrInput)) {
@@ -35,11 +43,20 @@ public class WithdrawService {
 
         usrInput = "-" + usrInput;
 
+        // Sends extra information to transaction table in the database.
         xActionService.sendBalanceAsTransaction(usrInput, "Withdraw");
+
         return balanceDAO.saveBalance(CurrentAccount.getInstance().getCurrentAccount(), newBalance);
 
     }
 
+    /**
+     *
+     * Description: Ensures user input is valid
+     *
+     * @param usrInput
+     * @return boolean
+     */
     public boolean isWithdrawValid(String usrInput) {
 
         String regex = "[0-9]*(\\.[0-9]{0,2})?";

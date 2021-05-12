@@ -9,7 +9,7 @@ import java.io.BufferedReader;
  * User: Jbialon
  * Date: 5/5/2021
  * Time: 9:09 AM
- * Description: {Insert Description}
+ * Description: Welcome screen
  */
 public class WelcomeScreen extends Screen {
 
@@ -20,6 +20,11 @@ public class WelcomeScreen extends Screen {
         this.consoleReader = consoleReader;
     }
 
+    /**
+     *
+     * Description: Displays the welcome screen for the end user.
+     *
+     */
     @Override
     public void render() {
 

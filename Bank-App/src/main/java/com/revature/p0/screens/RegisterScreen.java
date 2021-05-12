@@ -14,7 +14,7 @@ import static com.revature.p0.Driver.app;
  * User: Jbialon
  * Date: 5/1/2021
  * Time: 11:09 AM
- * Description: {Insert Description}
+ * Description: User registration screen.
  */
 public class RegisterScreen extends Screen {
 
@@ -27,6 +27,11 @@ public class RegisterScreen extends Screen {
         this.userService = userService;
     }
 
+    /**
+     *
+     * Description: Displays the user registration screen to the end user.
+     *
+     */
     public void render() {
 
         String firstName;

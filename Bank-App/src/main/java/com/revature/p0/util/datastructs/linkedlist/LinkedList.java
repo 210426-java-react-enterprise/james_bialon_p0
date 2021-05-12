@@ -8,7 +8,7 @@ import com.revature.p0.util.datastructs.list.List;
  * User: Jbialon
  * Date: 5/4/2021
  * Time: 3:24 PM
- * Description: {Insert Description}
+ * Description: Custom linked list implementation that holds LinkedListNodes<T>
  */
 public class LinkedList<T> implements List<T>, Queue<T> {
 
@@ -16,6 +16,13 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     private LinkedListNode<T> head;
     private LinkedListNode<T> tail;
 
+    /**
+     *
+     * Description: Creates a LinkedListNode with supplied data
+     *
+     * @param data
+     * @throws IllegalArgumentException
+     */
     public void add(T data) throws IllegalArgumentException {
 
         if (data == null) {
@@ -35,12 +42,23 @@ public class LinkedList<T> implements List<T>, Queue<T> {
 
     }
 
-
+    /**
+     *
+     * Description: Returns the size of the linked list.
+     *
+     * @return int
+     */
     public int size() {
         return size;
     }
 
-
+    /**
+     *
+     * Description: Gets a LinkedListNode by index.
+     *
+     * @param index
+     * @return LinkedListNode<T>
+     */
     @Override
     public T get(int index) {
         if (index < 0 || index > size) {
@@ -58,6 +76,12 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         return null;
     }
 
+    /**
+     *
+     * Description: Removes and returns LinkedListNode<T>
+     *
+     * @return
+     */
     @Override
     public T poll() {
 

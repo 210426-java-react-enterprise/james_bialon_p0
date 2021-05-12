@@ -13,7 +13,7 @@ import static com.revature.p0.Driver.app;
  * User: Jbialon
  * Date: 5/10/2021
  * Time: 4:45 PM
- * Description: {Insert Description}
+ * Description: Screen for making withdraws
  */
 public class WithdrawScreen extends Screen{
 
@@ -26,6 +26,11 @@ public class WithdrawScreen extends Screen{
         this.withdrawService = withdrawService;
     }
 
+    /**
+     *
+     * Description: Displays the withdraw screen for the end user.
+     *
+     */
     public void render() {
 
         try {

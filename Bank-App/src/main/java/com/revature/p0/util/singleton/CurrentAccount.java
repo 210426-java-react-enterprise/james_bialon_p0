@@ -8,7 +8,7 @@ import com.revature.p0.models.account.Account;
  * User: Jbialon
  * Date: 5/10/2021
  * Time: 10:47 AM
- * Description: {Insert Description}
+ * Description: Singleton for holding the currently selected bank account.
  */
 public class CurrentAccount {
 
@@ -19,12 +19,31 @@ public class CurrentAccount {
 
     }
 
+    /**
+     *
+     * Description: Returns the singleton container
+     *
+     * @return CurrentAccount
+     */
     public static CurrentAccount getInstance() {
         return acctSingleton;
     }
 
+    /**
+     *
+     * Description: Gets the current bank account from the singleton object
+     *
+     * @return Account
+     */
     public Account getCurrentAccount() { return currentAccount; }
 
+
+    /**
+     *
+     * Description: Sets the current bank account inside the singleton
+     *
+     * @param currAcct
+     */
     public void setCurrentAccount(Account currAcct) {
         currentAccount = currAcct;
     }

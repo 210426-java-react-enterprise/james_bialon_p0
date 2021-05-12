@@ -8,7 +8,7 @@ import com.revature.p0.util.iterator.DoubleIterator;
  * User: Jbialon
  * Date: 5/4/2021
  * Time: 3:27 PM
- * Description: {Insert Description}
+ * Description: A node for the custom linked list class allowing forward and backwards traversal.
  */
 public class LinkedListNode<T> implements DoubleIterator {
 
@@ -29,30 +29,73 @@ public class LinkedListNode<T> implements DoubleIterator {
         this.prevNode = prevNode;
     }
 
+    /**
+     *
+     * Description: Gets the node's index
+     *
+     * @return int
+     */
     public int getIndex() {
         return index;
     }
 
+    /**
+     *
+     * Description: Sets the nodes index
+     *
+     * @param index
+     */
     public void setIndex(int index) {
         this.index = index;
     }
 
+    /**
+     *
+     * Description: Gets the data from the node.
+     *
+     * @return T
+     */
     public T getData() {
         return data;
     }
 
+    /**
+     *
+     * Description: Sets the nodes data.
+     *
+     * @param data
+     */
     public void setData(T data) {
         this.data = data;
     }
 
+    /**
+     *
+     * Description: Sets the nodes next node reference.
+     *
+     * @param nextNode
+     */
     public void setNextNode(LinkedListNode<T> nextNode) {
         this.nextNode = nextNode;
     }
 
+
+    /**
+     *
+     * Description: Sets the nodes previous node reference.
+     *
+     * @param prevNode
+     */
     public void setPrevNode(LinkedListNode<T> prevNode) {
         this.prevNode = prevNode;
     }
 
+    /**
+     *
+     * Description: Checks to see if node has a next node reference.
+     *
+     * @return boolean
+     */
     @Override
     public boolean hasNext() {
         boolean returnValue = false;
@@ -64,11 +107,24 @@ public class LinkedListNode<T> implements DoubleIterator {
         return returnValue;
     }
 
+
+    /**
+     *
+     * Description: Goes to the next node reference.
+     *
+     * @return LinkedListNode<T>
+     */
     @Override
     public LinkedListNode<T> next() {
         return this.nextNode;
     }
 
+    /**
+     *
+     * Description: Checks if the node has a previous node reference.
+     *
+     * @return boolean
+     */
     @Override
     public boolean hasPrev() {
         boolean returnValue = false;
@@ -80,6 +136,12 @@ public class LinkedListNode<T> implements DoubleIterator {
         return returnValue;
     }
 
+    /**
+     *
+     * Description: Sets the reference to the current nodes previous node reference.
+     *
+     * @return LinkedListNode<T>
+     */
     @Override
     public LinkedListNode<T> prev() {
         return prevNode;

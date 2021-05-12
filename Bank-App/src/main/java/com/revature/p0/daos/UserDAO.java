@@ -13,10 +13,17 @@ import java.sql.SQLException;
  * User: Jbialon
  * Date: 5/7/2021
  * Time: 8:28 AM
- * Description: {Insert Description}
+ * Description: Access user information in the database
  */
 public class UserDAO {
 
+    /**
+     *
+     * Description: Adds a new user to the database
+     *
+     * @param newUser
+     * @return BankUser
+     */
     public BankUser save(BankUser newUser) {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
@@ -55,6 +62,13 @@ public class UserDAO {
 
     }
 
+    /**
+     *
+     * Description: Checks database for an existing username
+     *
+     * @param username
+     * @return boolean
+     */
     public boolean isUsernameAvailable(String username) {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
@@ -75,6 +89,13 @@ public class UserDAO {
 
     }
 
+    /**
+     *
+     * Description: Checks database for an existing email
+     *
+     * @param email
+     * @return boolean
+     */
     public boolean isEmailAvailable(String email) {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
@@ -94,6 +115,13 @@ public class UserDAO {
         return true;
     }
 
+    /**
+     *
+     * Description: Checks database and ensures proper login credentials were given
+     *
+     * @param username, password
+     * @return BankUser
+     */
     public BankUser findUserByUsernameAndPassword(String username, String password) {
 
         BankUser user = null;

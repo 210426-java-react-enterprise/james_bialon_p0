@@ -18,7 +18,7 @@ import static com.revature.p0.Driver.app;
  * User: Jbialon
  * Date: 5/1/2021
  * Time: 11:10 AM
- * Description: {Insert Description}
+ * Description: Shows a screen that allows users to manipulate or display data regarding their accounts.
  */
 public class AccountScreen extends Screen {
 

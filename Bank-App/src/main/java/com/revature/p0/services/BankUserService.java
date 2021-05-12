@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  * User: Jbialon
  * Date: 5/9/2021
  * Time: 4:04 PM
- * Description: {Insert Description}
+ * Description: Assures the users user account creation input is valid before persisting to the database.
  */
 public class BankUserService {
 
@@ -23,6 +23,15 @@ public class BankUserService {
         this.userDao = userDao;
     }
 
+    /**
+     *
+     * Description: If entry is valid this will send the data to the database
+     *
+     * @param newUser
+     * @return BankUser
+     * @throws InvalidRequestException
+     *
+     */
     public BankUser register(BankUser newUser) throws InvalidRequestException, ResourcePersistenceException {
 
         if (!isUserValid(newUser)) {
@@ -41,6 +50,13 @@ public class BankUserService {
 
     }
 
+    /**
+     *
+     * Description: Ensures user input is valid
+     *
+     * @param user
+     * @return boolean
+     */
     public boolean isUserValid(BankUser user) {
         if (user == null) return false;
         if (user.getuName() == null || user.getuName().trim().isEmpty() || user.getuName().length() > 15) return false;

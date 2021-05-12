@@ -13,7 +13,7 @@ import static com.revature.p0.Driver.app;
  * User: Jbialon
  * Date: 5/1/2021
  * Time: 11:09 AM
- * Description: {Insert Description}
+ * Description: Class for the login screen.
  */
 public class LoginScreen extends Screen {
 
@@ -25,6 +25,12 @@ public class LoginScreen extends Screen {
         this.consoleReader = consoleReader;
         this.userDao = userDAO;
     }
+
+    /**
+     *
+     * Description: Displays the screen that allows users to log in.
+     *
+     */
 
     public void render() {
 

@@ -13,10 +13,16 @@ import java.sql.SQLException;
  * User: Jbialon
  * Date: 5/7/2021
  * Time: 4:16 PM
- * Description: {Insert Description}
+ * Description: Interacts with the account_type table in the database
  */
 public class AccountTypeDAO {
 
+    /**
+     *
+     * Description: Brings back all available account types from the database
+     *
+     * @return array of account types
+     */
     public AccountType[] getAllAcctTypes() {
         AccountType[] acctTypes = null;
         AccountType acctType = null;

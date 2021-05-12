@@ -14,9 +14,17 @@ import java.sql.SQLException;
  * User: Jbialon
  * Date: 5/7/2021
  * Time: 4:15 PM
- * Description: {Insert Description}
+ * Description: Interacts with the account_transaction table within the database.
  */
 public class AccountTransactionDAO {
+
+    /**
+     *
+     * Description: Gets all of the transactions relating to a specific user bank account.
+     *
+     * @param acct
+     * @return array of transactions
+     */
     public AccountTransaction[] getAllAcctTransactions(Account acct) {
         AccountTransaction[] acctTransactions = null;
         AccountTransaction acctTransaction = null;
@@ -69,6 +77,12 @@ public class AccountTransactionDAO {
         return acctTransactions;
     }
 
+    /**
+     *
+     * Description: Saves a new transaction to the database.
+     *
+     * @param transaction
+     */
     public void saveTransaction(AccountTransaction transaction) {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {

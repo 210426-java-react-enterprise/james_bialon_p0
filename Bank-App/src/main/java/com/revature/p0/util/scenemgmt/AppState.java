@@ -15,7 +15,8 @@ import java.io.InputStreamReader;
  * User: Jbialon
  * Date: 5/1/2021
  * Time: 11:21 AM
- * Description: {Insert Description}
+ * Description: Holds all of the needed objects for the application
+ *              and monitors if the application is running
  */
 public class AppState{
     private BufferedReader consoleReader;
@@ -52,14 +53,34 @@ public class AppState{
         System.out.println("Application initialized!");
     }
 
+    /**
+     *
+     * Description: Allows other objects to access the screen router without
+     *              an injection.
+     *
+     * @return
+     */
     public ScreenRouter getRouter() {
         return router;
     }
 
+    /**
+     *
+     * Description: Checks if the app should exit or continue to run
+     *
+     * @return boolean
+     */
     public boolean isAppRunning() {
         return appRunning;
     }
 
+
+    /**
+     *
+     * Description: Set the application to either running or not running.
+     *
+     * @param appRunning
+     */
     public void setAppRunning(boolean appRunning) {
         this.appRunning = appRunning;
     }

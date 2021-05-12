@@ -9,7 +9,7 @@ import com.revature.p0.util.scenemgmt.AppState;
  * User: Jbialon
  * Date: 4/29/2021
  * Time: 9:06 AM
- * Description: {Insert Description}
+ * Description: Runs the application
  */
 public class Driver {
     private static AppState app = new AppState();
@@ -20,6 +20,12 @@ public class Driver {
         }
     }
 
+    /**
+     *
+     * Description: Gives access to the applications state throughout the program
+     *
+     * @return AppState
+     */
     public static AppState app() {
         return app;
     }

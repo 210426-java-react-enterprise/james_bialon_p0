@@ -14,9 +14,17 @@ import java.sql.SQLException;
  * User: Jbialon
  * Date: 5/7/2021
  * Time: 3:27 PM
- * Description: {Insert Description}
+ * Description: Interacts with the account table within the database.
  */
 public class AccountDAO {
+
+    /**
+     *
+     * Description: Saves a new bank account to the database.
+     *
+     * @param newAcct
+     * @return Account
+     */
     public Account saveNewAcct(Account newAcct) {
 
         AccountBalanceDAO balanceDAO = new AccountBalanceDAO();
@@ -50,6 +58,13 @@ public class AccountDAO {
 
     }
 
+    /**
+     *
+     * Description: Gets all of the accounts related to a specific user from the database.
+     *
+     * @param bankUser
+     * @return Array of accounts
+     */
     public Account[] getAcct(BankUser bankUser) {
 
         Account[] accts = null;

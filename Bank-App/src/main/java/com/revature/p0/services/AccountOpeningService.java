@@ -9,7 +9,7 @@ import com.revature.p0.models.account.Account;
  * User: Jbialon
  * Date: 5/11/2021
  * Time: 8:42 AM
- * Description: {Insert Description}
+ * Description: Assures the users new account creation input is valid before persisting to the database.
  */
 public class AccountOpeningService {
 
@@ -19,6 +19,14 @@ public class AccountOpeningService {
         this.acctDAO = acctDAO;
     }
 
+    /**
+     *
+     * Description: If entry is valid this will send the data to the database
+     *
+     * @param acct
+     * @return Account
+     * @throws InvalidRequestException
+     */
     public Account createAccount(Account acct) throws InvalidRequestException {
 
         if (!isAccountValid(acct)) {
@@ -29,6 +37,13 @@ public class AccountOpeningService {
 
     }
 
+    /**
+     *
+     * Description: Ensures user input is valid
+     *
+     * @param acct
+     * @return boolean
+     */
     public boolean isAccountValid(Account acct) {
 
         if (acct == null) return false;

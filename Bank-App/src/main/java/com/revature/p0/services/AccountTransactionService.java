@@ -1,6 +1,7 @@
 package com.revature.p0.services;
 
 import com.revature.p0.daos.AccountTransactionDAO;
+import com.revature.p0.exceptions.InvalidRequestException;
 import com.revature.p0.models.account.AccountTransaction;
 import com.revature.p0.util.singleton.CurrentAccount;
 
@@ -9,7 +10,7 @@ import com.revature.p0.util.singleton.CurrentAccount;
  * User: Jbialon
  * Date: 5/11/2021
  * Time: 3:35 PM
- * Description: {Insert Description}
+ * Description: Persists a transaction to the database.
  */
 public class AccountTransactionService {
 
@@ -19,6 +20,13 @@ public class AccountTransactionService {
         this.transactionDAO = transactionDAO;
     }
 
+    /**
+     *
+     * Description: If entry is valid this will send the data to the database
+     *
+     * @param transactionAmt, description
+     * @return boolean
+     */
     public boolean sendBalanceAsTransaction(String transactionAmt, String description) {
 
         AccountTransaction newTransaction = new AccountTransaction();

@@ -5,7 +5,7 @@ package com.revature.p0.exceptions;
  * User: Jbialon
  * Date: 5/9/2021
  * Time: 4:11 PM
- * Description: {Insert Description}
+ * Description: Exception relating to information held in the database
  */
 public class ResourcePersistenceException extends RuntimeException {
 

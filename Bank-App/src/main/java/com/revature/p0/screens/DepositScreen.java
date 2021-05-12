@@ -14,7 +14,7 @@ import static com.revature.p0.Driver.app;
  * User: Jbialon
  * Date: 5/10/2021
  * Time: 10:20 AM
- * Description: {Insert Description}
+ * Description: Screen for making deposits into a bank account
  */
 public class DepositScreen extends Screen{
 
@@ -26,6 +26,12 @@ public class DepositScreen extends Screen{
         this.consoleReader = consoleReader;
         this.depositService = depositService;
     }
+
+    /**
+     *
+     * Description: Displays the screen that allows users to deposit money into their accounts.
+     *
+     */
 
     public void render() {
 

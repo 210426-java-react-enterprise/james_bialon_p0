@@ -12,7 +12,8 @@ import java.util.Properties;
  * User: Jbialon
  * Date: 5/7/2021
  * Time: 8:25 AM
- * Description: {Insert Description}
+ * Description: Factory singleton that gives us a connection to the
+ *              database via jdbc.
  */
 public class ConnectionFactory {
 
@@ -35,6 +36,14 @@ public class ConnectionFactory {
         }
     }
 
+    /**
+     *
+     * Description: If the ConnectionFactory hasn't been instantiated instantiate
+     *              it and return it, otherwise return it without creating.
+     *
+     * @return ConnectionFactory
+     */
+
     public static ConnectionFactory getInstance() {
         if (connectionFactory == null) {
             connectionFactory = new ConnectionFactory();
@@ -42,6 +51,14 @@ public class ConnectionFactory {
 
         return connectionFactory;
     }
+
+    /**
+     *
+     * Description: Establishes connection to the database using credentials
+     *              from the application.properties file.
+     *
+     * @return Connection
+     */
 
     public Connection getConnection() {
 
