@@ -31,6 +31,8 @@ target/
 # IDE
 .idea/
 *.iml
+*.ipr
+*.iws
 
 # SQL with credentials
 SQL/Schema_User_Grant.sql
